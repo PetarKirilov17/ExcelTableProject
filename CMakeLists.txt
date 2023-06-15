@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.23)
+project(ExcelTableProject)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(ExcelTableProject main.cpp Cells/BaseCell.cpp Cells/BaseCell.h Cells/IntegerCell.h Cells/IntegerCell.cpp
+        Cells/DoubleCell.cpp Cells/DoubleCell.h Cells/StringCell.cpp Cells/StringCell.h
+        Cells/FormulaCell.cpp Cells/FormulaCell.h consts.h
+        stringHelperFunctions.cpp stringHelperFunctions.h Utils/MyString.h Utils/MyString.cpp Utils/MyVector.hpp Row.cpp Row.h ExcelTable.cpp ExcelTable.h CellFactory.cpp CellFactory.h Utils/SharedPointer.hpp Utils/StringView.cpp Utils/StringView.h Expressions/BaseUnit.h Expressions/Operands/Operand.cpp Expressions/Operands/Operand.h Expressions/Operators/Operator.cpp Expressions/Operators/Operator.h Expressions/Operands/NumberOperand.cpp Expressions/Operands/NumberOperand.h Expressions/Operands/CellOperand.cpp Expressions/Operands/CellOperand.h Expressions/Operators/PlusOperator.cpp Expressions/Operators/PlusOperator.h Expressions/Operators/MinusOperator.cpp Expressions/Operators/MinusOperator.h Expressions/Operators/MultiplyOperator.cpp Expressions/Operators/MultiplyOperator.h Expressions/Operators/DivisionOperator.cpp Expressions/Operators/DivisionOperator.h Expressions/Operators/PowOperator.cpp Expressions/Operators/PowOperator.h Expressions/ExpressionFactory.cpp Expressions/ExpressionFactory.h)
