@@ -8,7 +8,7 @@
 
 class MyString
 {
-    char* _data;
+    char* _data = nullptr;
     size_t _length;
 
     void copyFrom(const MyString& data);

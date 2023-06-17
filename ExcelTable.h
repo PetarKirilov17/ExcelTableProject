@@ -12,10 +12,16 @@ class ExcelTable{
 private:
     MyVector<Row> rows;
     MyVector<SharedPointer<FormulaCell>> tempFormulaCells;
+    MyVector<size_t> columnSizes;
+
+    void fillTheColumnSizes();
+    size_t getCountOfColsInTable() const;
     Row readRow(const char* buffer);
     void extractRow(std::stringstream& rawData, Row& rowToChange);
     void fillTheFormulaCellsRefs();
     const BaseCell& findCellByRowAndColIndexes(size_t rowIndex, size_t colIndex);
+    size_t getMaxWidthForColumn(int columnIndex) const;
+    void printRow(size_t rowIndex, size_t countOfCols) const;
 
 public:
     ExcelTable() = default;

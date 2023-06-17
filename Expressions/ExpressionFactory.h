@@ -8,19 +8,21 @@
 #include "../Utils/SharedPointer.hpp"
 #include "BaseUnit.h"
 #include "../Utils/MyString.h"
+#include "../Utils/MyVector.hpp"
+#include "../Cells/BaseCell.h"
 
 class ExpressionFactory{
 private:
     static ExpressionFactory* instance;
-    ExpressionFactory();
+    ExpressionFactory() = default;
 public:
     ExpressionFactory(const ExpressionFactory& other) = delete;
     ExpressionFactory& operator=(const ExpressionFactory& other) = delete;
-    ~ExpressionFactory();
 
     static ExpressionFactory* getInstance();
     static void freeInstance();
-    SharedPointer<BaseUnit> createCell(const MyString& cellData);
+    MyVector<SharedPointer<BaseUnit>> createExpression(const MyString& stringExpr,
+                                                       const MyVector<SharedPointer<BaseCell>>& referredCells);
 };
 
 #endif //EXCELTABLEPROJECT_EXPRESSIONFACTORY_H

@@ -15,6 +15,6 @@ const char MULTIPLY_SIGN = '*';
 const char DIVISION_SIGN = '/';
 const char POW_SIGN = '^';
 const size_t BUFFER_MAX_SIZE = 1024;
-
+const size_t MIN_COUNT_OF_ADDITIONAL_WHITESPACE = 2;
 
 #endif //EXCELTABLEPROJECT_CONSTS_H

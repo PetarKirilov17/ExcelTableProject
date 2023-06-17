@@ -3,6 +3,7 @@
 //
 
 #include "IntegerCell.h"
+#include "../stringHelperFunctions.h"
 
 void IntegerCell::print(std::ostream &os) const {
     os << cellData;
@@ -24,4 +25,8 @@ IntegerCell::IntegerCell(int numberInCell) {
 BaseCell *IntegerCell::clone() const {
     BaseCell* newCell = new IntegerCell(*this);
     return newCell;
+}
+
+int IntegerCell::getWidth() const {
+    return StringHelper::findLength(cellData);
 }

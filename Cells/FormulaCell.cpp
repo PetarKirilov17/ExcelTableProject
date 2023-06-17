@@ -3,6 +3,10 @@
 //
 
 #include "FormulaCell.h"
+#include "../Expressions/ExpressionFactory.h"
+#include "../Utils/MyStack.hpp"
+#include "../Expressions/Operators/Operator.h"
+#include "../Expressions/Operands/Operand.h"
 
 BaseCell *FormulaCell::clone() const {
     BaseCell* newCell = new FormulaCell(*this);
@@ -10,11 +14,11 @@ BaseCell *FormulaCell::clone() const {
 }
 
 void FormulaCell::print(std::ostream &os) const {
-
+    os << getFormulaValue();
 }
 
 double FormulaCell::getFormulaValue() const {
-    return 0;
+    return evaluateExpression();
 }
 
 MyVector<StringHelper::CellIndex> FormulaCell::getReferredIndexes() {
@@ -67,7 +71,32 @@ FormulaCell::FormulaCell(const MyString &stringValue) {
 }
 
 void FormulaCell::fillTheReferredCells(const MyVector<SharedPointer<BaseCell>> &refs) {
-    //    Factory fc;
-//    this->expr == fc.getExpr(string, refs);
-//    this->referredCells = refs;
+    ExpressionFactory* fc = ExpressionFactory::getInstance();
+    this->expr = fc->createExpression(stringValue, refs);
+    ExpressionFactory::freeInstance();
+}
+
+double FormulaCell::evaluateExpression() const {
+    double a;
+    double b;
+    MyStack<double> stack;
+    for (int i = 0; i < expr.getSize(); ++i) {
+        if(expr[i]->isOperator()){
+            a = stack.peek();
+            stack.pop();
+            b = stack.peek();
+            stack.pop();
+            Operator* op = dynamic_cast<Operator*>(expr[i].get());
+            stack.push(op->evaluate(a, b));
+        }
+        else{ // Operand
+            Operand* operand = dynamic_cast<Operand*>(expr[i].get());
+            stack.push(operand->getValue());
+        }
+    }
+    return stack.peek();
+}
+
+int FormulaCell::getWidth() const {
+    return StringHelper::findLength(getFormulaValue());
 }

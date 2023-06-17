@@ -124,6 +124,40 @@ bool StringHelper::isOperator(const char symbol) {
     return symbol == PLUS_SIGN || symbol == MINUS_SIGN || symbol == MULTIPLY_SIGN || symbol == DIVISION_SIGN || symbol == POW_SIGN;
 }
 
+MyString StringHelper::extractNumberFromFormula(const MyString &stringExpr, int start, int &index) {
+    while(index < stringExpr.length() &&
+    (StringHelper::isDigit(stringExpr[index]) || stringExpr[index] == DOT_SEPARATOR || stringExpr[index] == COMMA_SEPARATOR)){
+        index++;
+    }
+    return stringExpr.substr(start, index - start);
+}
+
+int StringHelper::findLength(int number) {
+    int length = 0;
+    while (number != 0) {
+        number /= 10;
+        length++;
+    }
+    return length;
+}
+
+int StringHelper::findLength(double number) {
+    int realPart = (int) number;
+    double floatPart = number - realPart;
+    int length = findLength(realPart);
+    while(floatPart != (int)floatPart){
+        floatPart *= 10;
+        length++;
+    }
+    return length;
+}
+
+void StringHelper::printSymbolNTimes(char symbol, size_t times) {
+    for (int i = 0; i < times; ++i) {
+        std::cout << symbol;
+    }
+}
+
 void StringHelper::CellIndex::setX(size_t x) {
     this->x = x;
 }

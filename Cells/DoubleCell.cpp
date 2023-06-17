@@ -3,6 +3,7 @@
 //
 
 #include "DoubleCell.h"
+#include "../stringHelperFunctions.h"
 
 void DoubleCell::setCellData(double numberInCell) {
     //TODO: add validations if needed
@@ -24,6 +25,10 @@ double DoubleCell::getFormulaValue() const {
 BaseCell *DoubleCell::clone() const {
     BaseCell* newCell = new DoubleCell(*this);
     return newCell;
+}
+
+int DoubleCell::getWidth() const {
+    return StringHelper::findLength(cellData);
 }
 
 

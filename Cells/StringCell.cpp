@@ -13,12 +13,16 @@ void StringCell::print(std::ostream &os) const {
 }
 
 double StringCell::getFormulaValue() const {
-    //TODO
+    //TODO :: extract number from string
     return 0.0;
 }
 
 BaseCell *StringCell::clone() const {
     BaseCell* newCell = new StringCell(*this);
     return newCell;
+}
+
+int StringCell::getWidth() const {
+    return cellData.length();
 }
 

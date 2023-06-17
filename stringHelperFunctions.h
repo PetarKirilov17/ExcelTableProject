@@ -21,6 +21,10 @@ namespace StringHelper{
     bool tryParseToDouble(const MyString& string, double& result);
     bool tryParseToString(const MyString& inputString, MyString& result);
     bool isFormulaCell(const MyString& string);
+    int findLength(int number);
+    int findLength(double number);
+    void printSymbolNTimes(char symbol, size_t times);
+    MyString extractNumberFromFormula(const MyString& stringExpr, int start, int& index);
     //bool tryParseToFormula(const MyString& string, MyVector<CellIndex>& resultCollection); // TODO : remove if not needed
     bool isDigit(const char symbol);
     bool isOperator(const char symbol);

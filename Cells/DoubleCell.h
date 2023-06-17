@@ -13,6 +13,7 @@ public:
     explicit DoubleCell(double numberInCell);
     void print(std::ostream &os) const override;
     double getFormulaValue() const override;
+    int getWidth() const override;
     BaseCell * clone() const override;
 
 private:

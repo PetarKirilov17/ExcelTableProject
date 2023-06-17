@@ -22,6 +22,8 @@ void ExcelTable::readTableFromFile(const MyString &filePath) {
         this->addRow(readRow(buffer));
         inFile.getline(buffer, BUFFER_MAX_SIZE);
     }
+    fillTheFormulaCellsRefs();
+    CellFactory::freeInstance();
     inFile.close();
 }
 
@@ -47,7 +49,7 @@ void ExcelTable::extractRow(std::stringstream &rawData, Row &rowToChange) {
         }
         rawData.getline(temporaryArray, BUFFER_MAX_SIZE, ',');
     }
-    factory->freeInstance();
+
 }
 
 void ExcelTable::addRow(const Row &row) {
@@ -78,4 +80,53 @@ const BaseCell &ExcelTable::findCellByRowAndColIndexes(size_t rowIndex, size_t c
         throw std::invalid_argument("Wrong column index!");
 
     return currentRow.getCellByIndex(colIndex-1);
+}
+
+size_t ExcelTable::getMaxWidthForColumn(int columnIndex) const {
+    size_t maxWidth = 0;
+    for (int i = 0; i < this->rows.getSize(); ++i) {
+        size_t currentElementLength = this->rows[i].getCellByIndex(columnIndex).getWidth();
+        if(currentElementLength > maxWidth){
+            maxWidth = currentElementLength;
+        }
+    }
+    return maxWidth;
+}
+
+void ExcelTable::printRow(size_t rowIndex, size_t countOfCols) const {
+    std::cout << "|";
+    for (int i = 0; i < countOfCols; ++i) {
+        StringHelper::printSymbolNTimes(' ', MIN_COUNT_OF_ADDITIONAL_WHITESPACE / 2);
+        size_t countOfPrintedSymbols = MIN_COUNT_OF_ADDITIONAL_WHITESPACE/2;
+        rows[rowIndex].getCellByIndex(i).print(std::cout);
+        countOfPrintedSymbols+= rows[rowIndex].getCellByIndex(i).getWidth();
+        StringHelper::printSymbolNTimes(' ',columnSizes[i] - countOfPrintedSymbols);
+
+        std::cout << "|";
+    }
+    std::cout << std::endl;
+}
+
+void ExcelTable::fillTheColumnSizes() {
+    size_t countOfCols = getCountOfColsInTable();
+    for (int i = 0; i < countOfCols; ++i) {
+        columnSizes.pushBack(getMaxWidthForColumn(i) + 2 * MIN_COUNT_OF_ADDITIONAL_WHITESPACE);
+    }
+}
+
+size_t ExcelTable::getCountOfColsInTable() const {
+    size_t maxCount = 0;
+    for (int i = 0; i < rows.getSize(); ++i) {
+        size_t currLength = rows[i].getCountOfCellsInRow();
+        if(currLength > maxCount){
+            maxCount = currLength;
+        }
+    }
+    return maxCount;
+}
+
+void ExcelTable::printTable() const {
+    for (int i = 0; i < rows.getSize(); ++i) {
+        printRow(i, getCountOfColsInTable());
+    }
 }

@@ -43,10 +43,3 @@ BaseCell *CellFactory::createCell(const MyString &cellData) {
     throw std::invalid_argument("Wrong format of the table");
 }
 
-//CellFactory::CellFactory() {
-//    std::cout << "Cell factory constr";
-//}
-//
-//CellFactory::~CellFactory() {
-//    std::cout << "Cell factory destructor";
-//}
