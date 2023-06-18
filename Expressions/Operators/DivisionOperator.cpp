@@ -15,3 +15,7 @@ double DivisionOperator::evaluate(double leftOperator, double rightOperator) con
     }
     return leftOperator / rightOperator;
 }
+
+int DivisionOperator::getPriority() const {
+    return 2;
+}

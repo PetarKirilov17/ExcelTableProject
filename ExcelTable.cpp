@@ -16,13 +16,14 @@ void ExcelTable::readTableFromFile(const MyString &filePath) {
     }
     // TODO : is it ok to use static char array here
 
-    char buffer[BUFFER_MAX_SIZE];
-    inFile.getline(buffer, BUFFER_MAX_SIZE);
+    char buffer[BUFFER_MAX_SIZE]{'\0'};
+
     while(!inFile.eof()){
-        this->addRow(readRow(buffer));
         inFile.getline(buffer, BUFFER_MAX_SIZE);
+        this->addRow(readRow(buffer));
     }
     fillTheFormulaCellsRefs();
+    fillTheColumnSizes();
     CellFactory::freeInstance();
     inFile.close();
 }
@@ -41,9 +42,9 @@ void ExcelTable::extractRow(std::stringstream &rawData, Row &rowToChange) {
     while (!rawData.eof()){
         char trimmedArr[BUFFER_MAX_SIZE] = {'\0'};
         StringHelper::trimStr(temporaryArray, trimmedArr);
-        BaseCell* newCell = factory->createCell(trimmedArr);
-        rowToChange.addCell(*newCell); // TODO :: check
-        FormulaCell* formulaCell = dynamic_cast<FormulaCell*>(newCell);
+        SharedPointer<BaseCell> newCell = factory->createCell(trimmedArr);
+        rowToChange.addCell(newCell); // TODO :: check
+        FormulaCell* formulaCell = dynamic_cast<FormulaCell*>(newCell.get());
         if(formulaCell != nullptr){ // is it ok here
             tempFormulaCells.pushBack(formulaCell);
         }
@@ -85,26 +86,14 @@ const BaseCell &ExcelTable::findCellByRowAndColIndexes(size_t rowIndex, size_t c
 size_t ExcelTable::getMaxWidthForColumn(int columnIndex) const {
     size_t maxWidth = 0;
     for (int i = 0; i < this->rows.getSize(); ++i) {
+        if(columnIndex >= this->rows[i].getCountOfCellsInRow())
+            continue;
         size_t currentElementLength = this->rows[i].getCellByIndex(columnIndex).getWidth();
         if(currentElementLength > maxWidth){
             maxWidth = currentElementLength;
         }
     }
     return maxWidth;
-}
-
-void ExcelTable::printRow(size_t rowIndex, size_t countOfCols) const {
-    std::cout << "|";
-    for (int i = 0; i < countOfCols; ++i) {
-        StringHelper::printSymbolNTimes(' ', MIN_COUNT_OF_ADDITIONAL_WHITESPACE / 2);
-        size_t countOfPrintedSymbols = MIN_COUNT_OF_ADDITIONAL_WHITESPACE/2;
-        rows[rowIndex].getCellByIndex(i).print(std::cout);
-        countOfPrintedSymbols+= rows[rowIndex].getCellByIndex(i).getWidth();
-        StringHelper::printSymbolNTimes(' ',columnSizes[i] - countOfPrintedSymbols);
-
-        std::cout << "|";
-    }
-    std::cout << std::endl;
 }
 
 void ExcelTable::fillTheColumnSizes() {
@@ -127,6 +116,6 @@ size_t ExcelTable::getCountOfColsInTable() const {
 
 void ExcelTable::printTable() const {
     for (int i = 0; i < rows.getSize(); ++i) {
-        printRow(i, getCountOfColsInTable());
+        rows[i].printRow(columnSizes);
     }
 }

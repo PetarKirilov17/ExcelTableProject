@@ -9,6 +9,7 @@
 
 class MinusOperator : public Operator{
 public:
+    int getPriority() const override;
     double evaluate(double leftOperator, double rightOperator) const override;
     SharedPointer<BaseUnit> clone() const override;
 };

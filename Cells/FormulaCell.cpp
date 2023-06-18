@@ -14,7 +14,8 @@ BaseCell *FormulaCell::clone() const {
 }
 
 void FormulaCell::print(std::ostream &os) const {
-    os << getFormulaValue();
+    //TODO : try catch division /0
+        os << getFormulaValue();
 }
 
 double FormulaCell::getFormulaValue() const {
@@ -72,13 +73,15 @@ FormulaCell::FormulaCell(const MyString &stringValue) {
 
 void FormulaCell::fillTheReferredCells(const MyVector<SharedPointer<BaseCell>> &refs) {
     ExpressionFactory* fc = ExpressionFactory::getInstance();
-    this->expr = fc->createExpression(stringValue, refs);
+    this->expr = std::move(fc->createExpression(stringValue, refs));
     ExpressionFactory::freeInstance();
 }
 
 double FormulaCell::evaluateExpression() const {
-    double a;
-    double b;
+    if (expr.getSize() == 0)
+        return 0;
+    double a = 0.0;
+    double b = 0.0;
     MyStack<double> stack;
     for (int i = 0; i < expr.getSize(); ++i) {
         if(expr[i]->isOperator()){

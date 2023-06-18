@@ -12,6 +12,7 @@
 #include "Operators/DivisionOperator.h"
 #include "Operators/PowOperator.h"
 #include "Operands/CellOperand.h"
+#include "../Utils/MyStack.hpp"
 
 ExpressionFactory* ExpressionFactory::instance = nullptr;
 
@@ -31,6 +32,7 @@ void ExpressionFactory::freeInstance() {
 MyVector<SharedPointer<BaseUnit>> ExpressionFactory::createExpression(const MyString &stringExpr,
                                                                       const MyVector<SharedPointer<BaseCell>> &referredCells) {
     MyVector<SharedPointer<BaseUnit>> units;
+    MyStack<Operator*> operatorsStack;
     size_t referredCellsIndex = 0;
     // we start from one because we skip the '='
     int i = 1;
@@ -39,6 +41,7 @@ MyVector<SharedPointer<BaseUnit>> ExpressionFactory::createExpression(const MySt
         if(!StringHelper::isDigit(currentSymbol) && !StringHelper::isOperator(currentSymbol) && currentSymbol != 'R'){
             continue;
         }
+        // parse and add number
         if(StringHelper::isDigit(currentSymbol)){
             MyString numberExpr = StringHelper::extractNumberFromFormula(stringExpr, i, i);
             int intnumber = 0;
@@ -48,26 +51,31 @@ MyVector<SharedPointer<BaseUnit>> ExpressionFactory::createExpression(const MySt
             }else if(StringHelper::tryParseToDouble(numberExpr, doubleNumber)){
                 units.pushBack(new NumberOperand(doubleNumber));
             }
-        }else if(StringHelper::isOperator(currentSymbol)){
-            switch (currentSymbol) {
-                case PLUS_SIGN:
-                    units.pushBack(new PlusOperator());
+        }
+        else if(StringHelper::isOperator(currentSymbol)){
+            Operator* op = createOperator(currentSymbol);
+
+            while (true){
+                if(operatorsStack.isEmpty()){
+                    operatorsStack.push(op);
                     break;
-                case MINUS_SIGN:
-                    units.pushBack(new MinusOperator());
+                }
+                if(op->getPriority() > operatorsStack.peek()->getPriority()){
+                    operatorsStack.push(op);
                     break;
-                case MULTIPLY_SIGN:
-                    units.pushBack(new MultiplyOperator());
+                }
+                if(!operatorsStack.isEmpty() && operatorsStack.peek()->getPriority() > op->getPriority()){
+                    units.pushBack(operatorsStack.peek());
+                    operatorsStack.pop();
+                }
+                if(!operatorsStack.isEmpty() && operatorsStack.peek()->getPriority() == op->getPriority()){
+                    units.pushBack(operatorsStack.peek());
+                    operatorsStack.pop();
+                    operatorsStack.push(op);
                     break;
-                case DIVISION_SIGN:
-                    units.pushBack(new DivisionOperator());
-                    break;
-                case POW_SIGN:
-                    units.pushBack(new PowOperator());
-                    break;
-                default:
-                    break;
+                }
             }
+
         }
         // start of cell reference
         else if(currentSymbol == 'R'){
@@ -86,5 +94,26 @@ MyVector<SharedPointer<BaseUnit>> ExpressionFactory::createExpression(const MySt
             i--; // because we have moved one index behind the last digit of the col index
         }
     }
+    while (!operatorsStack.isEmpty()){
+        units.pushBack(operatorsStack.peek());
+        operatorsStack.pop();
+    }
     return units;
+}
+
+Operator* ExpressionFactory::createOperator(char operatorSymbol) {
+    switch (operatorSymbol) {
+        case PLUS_SIGN:
+           return new PlusOperator();
+       case MINUS_SIGN:
+           return new MinusOperator();
+        case MULTIPLY_SIGN:
+            return new MultiplyOperator();
+        case DIVISION_SIGN:
+            return new DivisionOperator();
+        case POW_SIGN:
+            return new PowOperator();
+        default:
+            throw std::invalid_argument("Error! Wrong operator");
+    }
 }

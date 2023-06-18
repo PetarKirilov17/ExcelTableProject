@@ -1,8 +1,8 @@
 #include <iostream>
-#include <vector>
 #include "stringHelperFunctions.h"
 
 #include "ExcelTable.h"
+
 int main() {
     ExcelTable table;
     table.readTableFromFile("test.txt");

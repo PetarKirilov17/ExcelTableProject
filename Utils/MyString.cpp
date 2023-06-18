@@ -60,7 +60,6 @@ MyString& MyString::operator=(const MyString& other)
     return *this;
 }
 
-
 void MyString::free()
 {
     delete[] _data;

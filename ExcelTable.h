@@ -11,7 +11,7 @@
 class ExcelTable{
 private:
     MyVector<Row> rows;
-    MyVector<SharedPointer<FormulaCell>> tempFormulaCells;
+    MyVector<FormulaCell*> tempFormulaCells;
     MyVector<size_t> columnSizes;
 
     void fillTheColumnSizes();
@@ -21,7 +21,6 @@ private:
     void fillTheFormulaCellsRefs();
     const BaseCell& findCellByRowAndColIndexes(size_t rowIndex, size_t colIndex);
     size_t getMaxWidthForColumn(int columnIndex) const;
-    void printRow(size_t rowIndex, size_t countOfCols) const;
 
 public:
     ExcelTable() = default;

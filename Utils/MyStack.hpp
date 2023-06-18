@@ -130,7 +130,7 @@ void MyStack<T>::pop() {
 template<typename T>
 const T &MyStack<T>::peek() {
     if (isEmpty())
-        throw std::logic_error("Empty queue!");
+        throw std::logic_error("Empty stack!");
 
     return data[size-1];
 }

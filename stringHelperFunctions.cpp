@@ -9,7 +9,7 @@
 
 bool StringHelper::tryParseToInt(const MyString &string, int &result) {
     size_t stringLength = string.length();
-    for (int i = 0; i <=stringLength; ++i) {
+    for (int i = 0; i <stringLength; ++i) {
         if(!StringHelper::isDigit(string[i]))
             return false;
         result *= 10;
@@ -78,6 +78,7 @@ void StringHelper::trimStr(const char *src, char *dest) {
 }
 
 bool StringHelper::tryParseToString(const MyString &inputString, MyString &result) {
+    char buffer[BUFFER_MAX_SIZE]{'\0'};
     size_t inputStringLength = inputString.length();
     size_t resultIndex = 0;
     if(inputString[0] != '\"' || inputString[inputStringLength-1] != '\"'){
@@ -85,7 +86,7 @@ bool StringHelper::tryParseToString(const MyString &inputString, MyString &resul
     }
     for (int i = 1; i < inputStringLength - 1; ++i) {
         if(inputString[i] != '\\'){
-            result[resultIndex++] = inputString[i];
+            buffer[resultIndex++] = inputString[i];
             continue;
         }
         // inputString[i] == '\'
@@ -95,12 +96,13 @@ bool StringHelper::tryParseToString(const MyString &inputString, MyString &resul
         }
 
         if(inputString[i] == '\\' || inputString[i] == '\"'){
-            result[resultIndex++] = inputString[i];
+            buffer[resultIndex++] = inputString[i];
         }
         else {
             return false;
         }
     }
+    result = buffer;
     return true;
 }
 
@@ -142,13 +144,33 @@ int StringHelper::findLength(int number) {
 }
 
 int StringHelper::findLength(double number) {
-    int realPart = (int) number;
-    double floatPart = number - realPart;
-    int length = findLength(realPart);
-    while(floatPart != (int)floatPart){
-        floatPart *= 10;
+
+    if (number == 0)
+        return 1; // If the number is zero, length is 1 (including the decimal point)
+
+    int length = 0;
+    long long intPart = static_cast<long long>(number); // Extract the integer part
+    long long initialIntPart = intPart;
+    // Calculate the length of the integer part
+    while (intPart != 0) {
+        intPart /= 10;
         length++;
     }
+
+    if(initialIntPart == number){
+        return length;
+    }
+
+    length++; // Account for the decimal point
+
+    double decimalPart = number - static_cast<double>(initialIntPart); // Extract the decimal part
+
+    // Calculate the length of the decimal part
+    while (decimalPart - static_cast<long long>(decimalPart) != 0) {
+        decimalPart *= 10;
+        length++;
+    }
+
     return length;
 }
 

@@ -15,9 +15,9 @@ public:
     //TODO
     Row() = default;
     size_t getCountOfCellsInRow() const;
-    void addCell(const BaseCell& newCell);
-    void addCell(BaseCell&& newCell);
+    void addCell(const SharedPointer<BaseCell>& newCell);
     const BaseCell& getCellByIndex(size_t index) const;
+    void printRow(const MyVector<size_t>& columnSizes) const;
     // TODO : add functionality for changing(editing) cell by index
     ~Row();
 };

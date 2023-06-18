@@ -12,3 +12,7 @@ SharedPointer<BaseUnit> PowOperator::clone() const {
 double PowOperator::evaluate(double leftOperator, double rightOperator) const {
     return pow(leftOperator, rightOperator);
 }
+
+int PowOperator::getPriority() const {
+    return 3;
+}

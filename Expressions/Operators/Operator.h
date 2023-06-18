@@ -9,6 +9,7 @@
 
 class Operator : public BaseUnit{
 public:
+    virtual int getPriority() const = 0;
     virtual double evaluate(double leftOperator, double rightOperator) const = 0;
     bool isOperator() const override;
 };

@@ -9,6 +9,7 @@
 
 class DivisionOperator : public Operator{
 public:
+    int getPriority() const override;
     SharedPointer<BaseUnit> clone() const override;
     double evaluate(double leftOperator, double rightOperator) const override;
 };

@@ -11,3 +11,7 @@ SharedPointer<BaseUnit> PlusOperator::clone() const {
     SharedPointer<BaseUnit> ptr(new PlusOperator(*this));
     return ptr;
 }
+
+int PlusOperator::getPriority() const {
+    return 1;
+}

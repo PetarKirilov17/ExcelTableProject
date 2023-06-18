@@ -12,3 +12,7 @@ SharedPointer<BaseUnit> MinusOperator::clone() const {
     SharedPointer<BaseUnit> ptr(new MinusOperator(*this));
     return ptr;
 }
+
+int MinusOperator::getPriority() const {
+    return 1;
+}

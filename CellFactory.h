@@ -5,6 +5,7 @@
 #ifndef EXCELTABLEPROJECT_CELLFACTORY_H
 #define EXCELTABLEPROJECT_CELLFACTORY_H
 #include "Cells/BaseCell.h"
+#include "Utils/SharedPointer.hpp"
 
 class CellFactory{
 private:
@@ -16,7 +17,7 @@ public:
 
     static CellFactory* getInstance();
     static void freeInstance();
-    BaseCell* createCell(const MyString& cellData);
+    SharedPointer<BaseCell> createCell(const MyString& cellData);
 };
 
 #endif //EXCELTABLEPROJECT_CELLFACTORY_H

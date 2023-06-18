@@ -12,3 +12,7 @@ SharedPointer<BaseUnit> MultiplyOperator::clone() const {
 double MultiplyOperator::evaluate(double leftOperator, double rightOperator) const {
     return leftOperator * rightOperator;
 }
+
+int MultiplyOperator::getPriority() const {
+    return 2;
+}

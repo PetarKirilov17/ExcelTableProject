@@ -23,7 +23,7 @@ void CellFactory::freeInstance() {
     instance = nullptr;
 }
 
-BaseCell *CellFactory::createCell(const MyString &cellData) {
+SharedPointer<BaseCell>CellFactory::createCell(const MyString &cellData) {
     // here is the extraction of the cell data and creating the proper cell
     int integerResult = 0;
     if(StringHelper::tryParseToInt(cellData, integerResult)){
