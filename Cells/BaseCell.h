@@ -9,6 +9,7 @@
 
 class BaseCell{
 public:
+    virtual void writeInFile(std::ostream& os) const = 0;
     virtual void print(std::ostream& os) const = 0;
     virtual double getFormulaValue() const = 0;
     virtual BaseCell* clone() const = 0;

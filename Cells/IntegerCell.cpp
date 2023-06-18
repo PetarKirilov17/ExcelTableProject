@@ -30,3 +30,7 @@ BaseCell *IntegerCell::clone() const {
 int IntegerCell::getWidth() const {
     return StringHelper::findLength(cellData);
 }
+
+void IntegerCell::writeInFile(std::ostream &os) const {
+    os << cellData;
+}

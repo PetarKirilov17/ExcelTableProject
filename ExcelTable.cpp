@@ -13,9 +13,11 @@ void ExcelTable::writeTableToFile(const MyString &filePath) const{
     if(!outFile.is_open()){
         throw std::invalid_argument("Error while opening the file!");
     }
-    for (int i = 0; i < rows.getSize(); ++i) {
+    for (int i = 0; i < rows.getSize() - 1; ++i) {
         rows[i].writeRowToFile(outFile);
+        outFile << std::endl;
     }
+    rows[rows.getSize()-1].writeRowToFile(outFile);
 
     outFile.close();
 }
@@ -25,7 +27,6 @@ void ExcelTable::readTableFromFile(const MyString &filePath) {
     if(!inFile.is_open()){
         throw std::invalid_argument("Error while opening the file!");
     }
-
     char buffer[BUFFER_MAX_SIZE]{'\0'};
 
     while(!inFile.eof()){
@@ -47,9 +48,9 @@ Row ExcelTable::readRow(const char *buffer) {
 
 void ExcelTable::extractRow(std::stringstream &rawData, Row &rowToChange) {
     CellFactory* factory = CellFactory::getInstance();
-    char temporaryArray[BUFFER_MAX_SIZE] = {'\0'};
-    rawData.getline(temporaryArray, BUFFER_MAX_SIZE, ',');
     while (!rawData.eof()){
+        char temporaryArray[BUFFER_MAX_SIZE] = {'\0'};
+        rawData.getline(temporaryArray, BUFFER_MAX_SIZE, ',');
         char trimmedArr[BUFFER_MAX_SIZE] = {'\0'};
         StringHelper::trimStr(temporaryArray, trimmedArr);
         SharedPointer<BaseCell> newCell = factory->createCell(trimmedArr);
@@ -58,7 +59,6 @@ void ExcelTable::extractRow(std::stringstream &rawData, Row &rowToChange) {
         if(formulaCell != nullptr){ // is it ok here
             tempFormulaCells.pushBack(formulaCell);
         }
-        rawData.getline(temporaryArray, BUFFER_MAX_SIZE, ',');
     }
 }
 
@@ -133,11 +133,31 @@ void ExcelTable::setCell(size_t rowIndex, size_t columnIndex, const SharedPointe
     if (rowIndex >= rows.getSize()) {
         throw std::invalid_argument("Error! Invalid row index!");
     }
+    FormulaCell* oldCell = dynamic_cast<FormulaCell*>(this->getCell(rowIndex, columnIndex).get());
+    if(oldCell != nullptr){
+        for (int i = 0; i < tempFormulaCells.getSize(); ++i) {
+            if(oldCell == tempFormulaCells[i]){
+                tempFormulaCells.popAt(i);
+            }
+        }
+    }
+    FormulaCell* newCellCasted = dynamic_cast<FormulaCell*>(newCell.get());
+    if(newCellCasted != nullptr){
+        tempFormulaCells.pushBack(newCellCasted);
+    }
+
     rows[rowIndex].setCell(columnIndex, newCell);
-    tempFormulaCells.clear();
+//    tempFormulaCells.clear();
     columnSizes.clear();
     fillTheFormulaCellsRefs();
     fillTheColumnSizes();
+}
+
+SharedPointer<BaseCell> ExcelTable::getCell(size_t rowIndex, size_t colIndex) const {
+    if(rowIndex >= rows.getSize()){
+        throw std::invalid_argument("Error! Wrong row index!");
+    }
+    return rows[rowIndex].getCell(colIndex);
 }
 
 

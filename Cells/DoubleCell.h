@@ -11,6 +11,7 @@ private:
     double cellData = 0.0;
 public:
     explicit DoubleCell(double numberInCell);
+    void writeInFile(std::ostream &os) const override;
     void print(std::ostream &os) const override;
     double getFormulaValue() const override;
     int getWidth() const override;

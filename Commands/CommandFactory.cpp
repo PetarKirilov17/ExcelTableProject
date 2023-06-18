@@ -41,6 +41,7 @@ SharedPointer<BaseCommand> CommandFactory::createCommand() {
         case '7':
             return new ExitCommand();
         default:
+            // TODO : invalid command
             std::cout << "Invalid command!" << std::endl;
             break;
     }

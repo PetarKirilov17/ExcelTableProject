@@ -90,7 +90,7 @@ double FormulaCell::evaluateExpression() const {
             b = stack.peek();
             stack.pop();
             Operator* op = dynamic_cast<Operator*>(expr[i].get());
-            stack.push(op->evaluate(a, b));
+            stack.push(op->evaluate(b, a));
         }
         else{ // Operand
             Operand* operand = dynamic_cast<Operand*>(expr[i].get());
@@ -102,4 +102,8 @@ double FormulaCell::evaluateExpression() const {
 
 int FormulaCell::getWidth() const {
     return StringHelper::findLength(getFormulaValue());
+}
+
+void FormulaCell::writeInFile(std::ostream &os) const {
+    os << stringValue;
 }

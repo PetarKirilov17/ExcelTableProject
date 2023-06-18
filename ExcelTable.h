@@ -21,6 +21,7 @@ private:
     void fillTheFormulaCellsRefs();
     const BaseCell& findCellByRowAndColIndexes(size_t rowIndex, size_t colIndex);
     size_t getMaxWidthForColumn(int columnIndex) const;
+    SharedPointer<BaseCell> getCell(size_t rowIndex, size_t colIndex) const;
 
 public:
     ExcelTable() = default;

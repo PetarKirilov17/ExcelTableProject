@@ -31,4 +31,8 @@ int DoubleCell::getWidth() const {
     return StringHelper::findLength(cellData);
 }
 
+void DoubleCell::writeInFile(std::ostream &os) const {
+    os << cellData;
+}
+
 

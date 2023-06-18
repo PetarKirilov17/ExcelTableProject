@@ -11,6 +11,7 @@ private:
     int cellData = 0;
 public:
     explicit IntegerCell(int numberInCell);
+    void writeInFile(std::ostream &os) const override;
     void print(std::ostream& os) const override;
     double getFormulaValue() const override;
     int getWidth() const override;

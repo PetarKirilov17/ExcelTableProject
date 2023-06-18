@@ -11,6 +11,7 @@ private:
     MyString cellData;
 public:
     StringCell(const MyString& stringInCell);
+    void writeInFile(std::ostream &os) const override;
     void print(std::ostream &os) const override;
     double getFormulaValue() const override;
     int getWidth() const override;

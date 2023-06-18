@@ -3,6 +3,7 @@
 //
 
 #include "StringCell.h"
+#include "../stringHelperFunctions.h"
 
 StringCell::StringCell(const MyString &stringInCell) {
     cellData = stringInCell;
@@ -24,5 +25,9 @@ BaseCell *StringCell::clone() const {
 
 int StringCell::getWidth() const {
     return cellData.length();
+}
+
+void StringCell::writeInFile(std::ostream &os) const {
+    os << StringHelper::convertStringCellForOutput(cellData);
 }
 

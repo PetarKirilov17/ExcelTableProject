@@ -25,9 +25,10 @@ namespace StringHelper{
     int findLength(double number);
     void printSymbolNTimes(char symbol, size_t times);
     MyString extractNumberFromFormula(const MyString& stringExpr, int start, int& index);
-    //bool tryParseToFormula(const MyString& string, MyVector<CellIndex>& resultCollection); // TODO : remove if not needed
+    MyString convertStringCellForOutput(const MyString& string);
     bool isDigit(const char symbol);
     bool isOperator(const char symbol);
+
 }
 
 

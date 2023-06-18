@@ -17,6 +17,7 @@ private:
     double evaluateExpression() const;
 public:
     FormulaCell(const MyString& stringValue);
+    void writeInFile(std::ostream &os) const override;
     void print(std::ostream &os) const override;
     BaseCell * clone() const override;
     int getWidth() const override;

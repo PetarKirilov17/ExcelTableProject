@@ -48,8 +48,15 @@ void Row::setCell(size_t colIndex, const SharedPointer<BaseCell> &newCell) {
 
 void Row::writeRowToFile(std::ostream &os) const { // TODO :: change
     for (int i = 0; i < cells.getSize() - 1; ++i) {
-        cells[i]->print(os);
+        cells[i]->writeInFile(os);
         os << ", ";
     }
-    cells[cells.getSize() - 1]->print(os);
+    cells[cells.getSize() - 1]->writeInFile(os);
+}
+
+const SharedPointer<BaseCell> Row::getCell(size_t colIndex) const {
+    if(colIndex >= cells.getSize()){
+        throw std::invalid_argument("Error! Wrong columnIndex");
+    }
+    return cells[colIndex];
 }

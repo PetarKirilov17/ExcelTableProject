@@ -110,18 +110,6 @@ bool StringHelper::isFormulaCell(const MyString &string) {
     return string[0] == '=';
 }
 
-//bool StringHelper::tryParseToFormula(const MyString &string, MyVector<CellIndex> &resultCollection) {
-//    // we skip the first symbol because we have already checked that it is '='
-//    size_t stringLength = string.length();
-//    for (int i = 1; i < stringLength; ++i) {
-//        if(isDigit(string[i]) || isOperator(string[i]) || string[i] == ' '
-//        || string[i] == COMMA_SEPARATOR || string[i] == DOT_SEPARATOR){
-//            continue;
-//        }
-//
-//    }
-//}
-
 bool StringHelper::isOperator(const char symbol) {
     return symbol == PLUS_SIGN || symbol == MINUS_SIGN || symbol == MULTIPLY_SIGN || symbol == DIVISION_SIGN || symbol == POW_SIGN;
 }
@@ -178,6 +166,23 @@ void StringHelper::printSymbolNTimes(char symbol, size_t times) {
     for (int i = 0; i < times; ++i) {
         std::cout << symbol;
     }
+}
+
+MyString StringHelper::convertStringCellForOutput(const MyString &string) {
+    char buffer[BUFFER_MAX_SIZE]{'\0'};
+    buffer[0] = '"';
+    int index = 1;
+    for (int i = 0; i < string.length() ; ++i) {
+        if (string[i] == '\\' || string[i] == '"') {
+            buffer[index++] = '\\';
+            buffer[index++] = string[i];
+        }
+        else
+            buffer[index++] = string[i];
+    }
+    buffer[index++] = '"';
+    buffer[index] = '\0';
+    return buffer;
 }
 
 void StringHelper::CellIndex::setX(size_t x) {
