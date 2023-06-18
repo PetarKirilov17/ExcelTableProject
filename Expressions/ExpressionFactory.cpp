@@ -17,7 +17,6 @@
 ExpressionFactory* ExpressionFactory::instance = nullptr;
 
 ExpressionFactory* ExpressionFactory::getInstance() {
-    // TODO: mutex lock!
     if (!instance) {
         instance = new ExpressionFactory();
     }

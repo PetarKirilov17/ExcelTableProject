@@ -25,7 +25,9 @@ private:
 public:
     ExcelTable() = default;
     void readTableFromFile(const MyString& filePath);
+    void writeTableToFile(const MyString& filePath) const;
     void addRow(const Row& row);
+    void setCell(size_t rowIndex, size_t columnIndex, const SharedPointer<BaseCell>& newCell);
     void printTable() const;
 };
 

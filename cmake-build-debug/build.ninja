@@ -181,6 +181,72 @@ build CMakeFiles/ExcelTableProject.dir/Expressions/ExpressionFactory.cpp.obj: CX
   OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
   OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Expressions
 
+build CMakeFiles/ExcelTableProject.dir/Commands/OpenTableCommand.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/OpenTableCommand.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\OpenTableCommand.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/Commands/CloseTableCommand.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/CloseTableCommand.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\CloseTableCommand.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/Commands/SaveTableCommand.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/SaveTableCommand.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\SaveTableCommand.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/Commands/BaseCommand.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/BaseCommand.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\BaseCommand.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/Commands/SaveAsTableCommand.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/SaveAsTableCommand.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\SaveAsTableCommand.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/Commands/PrintCommand.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/PrintCommand.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\PrintCommand.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/Commands/ExitCommand.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/ExitCommand.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\ExitCommand.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/Commands/EditTableCommand.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/EditTableCommand.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\EditTableCommand.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/Commands/CommandFactory.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/Commands/CommandFactory.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\Commands\CommandFactory.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir\Commands
+
+build CMakeFiles/ExcelTableProject.dir/ExcelTableMenu.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/ExcelTableMenu.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\ExcelTableMenu.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir
+
+build CMakeFiles/ExcelTableProject.dir/startUp.cpp.obj: CXX_COMPILER__ExcelTableProject_Debug D$:/SU_Sem2/OOP/ExcelTableProject/startUp.cpp || cmake_object_order_depends_target_ExcelTableProject
+  DEP_FILE = CMakeFiles\ExcelTableProject.dir\startUp.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\ExcelTableProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\ExcelTableProject.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ExcelTableProject
@@ -189,7 +255,7 @@ build CMakeFiles/ExcelTableProject.dir/Expressions/ExpressionFactory.cpp.obj: CX
 #############################################
 # Link the executable ExcelTableProject.exe
 
-build ExcelTableProject.exe: CXX_EXECUTABLE_LINKER__ExcelTableProject_Debug CMakeFiles/ExcelTableProject.dir/main.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/BaseCell.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/IntegerCell.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/DoubleCell.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/StringCell.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/FormulaCell.cpp.obj CMakeFiles/ExcelTableProject.dir/stringHelperFunctions.cpp.obj CMakeFiles/ExcelTableProject.dir/Utils/MyString.cpp.obj CMakeFiles/ExcelTableProject.dir/Row.cpp.obj CMakeFiles/ExcelTableProject.dir/ExcelTable.cpp.obj CMakeFiles/ExcelTableProject.dir/CellFactory.cpp.obj CMakeFiles/ExcelTableProject.dir/Utils/StringView.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operands/Operand.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/Operator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operands/NumberOperand.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operands/CellOperand.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/PlusOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/MinusOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/MultiplyOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/DivisionOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/PowOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/ExpressionFactory.cpp.obj
+build ExcelTableProject.exe: CXX_EXECUTABLE_LINKER__ExcelTableProject_Debug CMakeFiles/ExcelTableProject.dir/main.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/BaseCell.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/IntegerCell.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/DoubleCell.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/StringCell.cpp.obj CMakeFiles/ExcelTableProject.dir/Cells/FormulaCell.cpp.obj CMakeFiles/ExcelTableProject.dir/stringHelperFunctions.cpp.obj CMakeFiles/ExcelTableProject.dir/Utils/MyString.cpp.obj CMakeFiles/ExcelTableProject.dir/Row.cpp.obj CMakeFiles/ExcelTableProject.dir/ExcelTable.cpp.obj CMakeFiles/ExcelTableProject.dir/CellFactory.cpp.obj CMakeFiles/ExcelTableProject.dir/Utils/StringView.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operands/Operand.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/Operator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operands/NumberOperand.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operands/CellOperand.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/PlusOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/MinusOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/MultiplyOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/DivisionOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/Operators/PowOperator.cpp.obj CMakeFiles/ExcelTableProject.dir/Expressions/ExpressionFactory.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/OpenTableCommand.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/CloseTableCommand.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/SaveTableCommand.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/BaseCommand.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/SaveAsTableCommand.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/PrintCommand.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/ExitCommand.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/EditTableCommand.cpp.obj CMakeFiles/ExcelTableProject.dir/Commands/CommandFactory.cpp.obj CMakeFiles/ExcelTableProject.dir/ExcelTableMenu.cpp.obj CMakeFiles/ExcelTableProject.dir/startUp.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ExcelTableProject.dir

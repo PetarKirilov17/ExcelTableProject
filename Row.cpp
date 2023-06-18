@@ -5,9 +5,6 @@
 #include "stringHelperFunctions.h"
 #include "consts.h"
 
-Row::~Row() {
-    // TODO :: I think it is not needed
-}
 
 void Row::addCell(const SharedPointer<BaseCell>& newCell) {
     cells.pushBack(newCell);
@@ -35,4 +32,19 @@ void Row::printRow(const MyVector<size_t> &columnSizes) const {
         std::cout << "|";
     }
     std::cout << std::endl;
+}
+
+void Row::setCell(size_t colIndex, const SharedPointer<BaseCell> &newCell) {
+    if(colIndex >= cells.getSize()){
+        throw std::invalid_argument("Error! Invalid column index");
+    }
+    cells[colIndex] = newCell; // operator = of SharedPointer
+}
+
+void Row::writeRowToFile(std::ostream &os) const { // TODO :: change
+    for (int i = 0; i < cells.getSize() - 1; ++i) {
+        cells[i]->print(os);
+        os << ", ";
+    }
+    cells[cells.getSize() - 1]->print(os);
 }

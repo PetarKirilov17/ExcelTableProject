@@ -8,13 +8,23 @@
 #include "stringHelperFunctions.h"
 #include "CellFactory.h"
 
+void ExcelTable::writeTableToFile(const MyString &filePath) const{
+    std::ofstream outFile(filePath.c_str(), std::ios::out);
+    if(!outFile.is_open()){
+        throw std::invalid_argument("Error while opening the file!");
+    }
+    for (int i = 0; i < rows.getSize(); ++i) {
+        rows[i].writeRowToFile(outFile);
+    }
+
+    outFile.close();
+}
+
 void ExcelTable::readTableFromFile(const MyString &filePath) {
     std::ifstream inFile(filePath.c_str(), std::ios::in);
     if(!inFile.is_open()){
-        // TODO: check for better error
         throw std::invalid_argument("Error while opening the file!");
     }
-    // TODO : is it ok to use static char array here
 
     char buffer[BUFFER_MAX_SIZE]{'\0'};
 
@@ -43,14 +53,13 @@ void ExcelTable::extractRow(std::stringstream &rawData, Row &rowToChange) {
         char trimmedArr[BUFFER_MAX_SIZE] = {'\0'};
         StringHelper::trimStr(temporaryArray, trimmedArr);
         SharedPointer<BaseCell> newCell = factory->createCell(trimmedArr);
-        rowToChange.addCell(newCell); // TODO :: check
+        rowToChange.addCell(newCell);
         FormulaCell* formulaCell = dynamic_cast<FormulaCell*>(newCell.get());
         if(formulaCell != nullptr){ // is it ok here
             tempFormulaCells.pushBack(formulaCell);
         }
         rawData.getline(temporaryArray, BUFFER_MAX_SIZE, ',');
     }
-
 }
 
 void ExcelTable::addRow(const Row &row) {
@@ -119,3 +128,16 @@ void ExcelTable::printTable() const {
         rows[i].printRow(columnSizes);
     }
 }
+
+void ExcelTable::setCell(size_t rowIndex, size_t columnIndex, const SharedPointer<BaseCell> &newCell) {
+    if (rowIndex >= rows.getSize()) {
+        throw std::invalid_argument("Error! Invalid row index!");
+    }
+    rows[rowIndex].setCell(columnIndex, newCell);
+    tempFormulaCells.clear();
+    columnSizes.clear();
+    fillTheFormulaCellsRefs();
+    fillTheColumnSizes();
+}
+
+

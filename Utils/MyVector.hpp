@@ -100,7 +100,7 @@ void MyVector<T>::validateIndex(size_t index) const {
 
 template<class T>
 void MyVector<T>::upsizeIfNeeded() {
-    if(size == capacity) // TODO: check why here is unreachable code
+    if(size == capacity)
         resize(capacity * RESIZE_COEFFICIENT);
 }
 
@@ -111,7 +111,7 @@ void MyVector<T>::downsizeIfNeeded() {
 }
 
 template<class T>
-void MyVector<T>::resize(size_t newCapacity) { // TODO: check why here is unreachable code
+void MyVector<T>::resize(size_t newCapacity) {
     this->capacity = newCapacity;
     T* temp = new T[newCapacity];
     if(size > newCapacity){
