@@ -33,6 +33,13 @@ void ExcelTable::readTableFromFile(const MyString &filePath) {
         inFile.getline(buffer, BUFFER_MAX_SIZE);
         this->addRow(readRow(buffer));
     }
+
+    // fill with empty cells
+    size_t countOfCols = getCountOfColsInTable();
+    for (int i = 0; i < rows.getSize(); ++i) {
+        rows[i].fillEmptyCells(countOfCols - rows[i].getCountOfCellsInRow());
+    }
+
     fillTheFormulaCellsRefs();
     fillTheColumnSizes();
     CellFactory::freeInstance();
@@ -147,7 +154,6 @@ void ExcelTable::setCell(size_t rowIndex, size_t columnIndex, const SharedPointe
     }
 
     rows[rowIndex].setCell(columnIndex, newCell);
-//    tempFormulaCells.clear();
     columnSizes.clear();
     fillTheFormulaCellsRefs();
     fillTheColumnSizes();

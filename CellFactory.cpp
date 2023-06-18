@@ -8,6 +8,7 @@
 #include "Cells/StringCell.h"
 #include "Cells/FormulaCell.h"
 #include "stringHelperFunctions.h"
+#include "Cells/EmptyCell.h"
 
 CellFactory* CellFactory::instance = nullptr;
 
@@ -40,6 +41,8 @@ SharedPointer<BaseCell>CellFactory::createCell(const MyString &cellData) {
     if(StringHelper::isFormulaCell(cellData)){
         return new FormulaCell(cellData); // initialize formula cell with raw data
     }
+    if(StringHelper::isEmptyCell(cellData)){
+        return new EmptyCell();
+    }
     throw std::invalid_argument("Wrong format of the table");
 }
-

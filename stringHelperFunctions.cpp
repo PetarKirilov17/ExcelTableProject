@@ -3,12 +3,16 @@
 //
 
 #include "stringHelperFunctions.h"
-#include "cstring"
+#include <cstring>
 #include "consts.h"
 #include "Utils/StringView.h"
+#include <cmath>
 
 bool StringHelper::tryParseToInt(const MyString &string, int &result) {
     size_t stringLength = string.length();
+    if(stringLength < 1){
+        return false;
+    }
     for (int i = 0; i <stringLength; ++i) {
         if(!StringHelper::isDigit(string[i]))
             return false;
@@ -38,7 +42,7 @@ bool StringHelper::tryParseToDouble(const MyString &string, double &result) {
         stringIndex++;
     }
 
-    if(string[stringIndex] != DOT_SEPARATOR && string[stringIndex] != COMMA_SEPARATOR){
+    if(string[stringIndex] != DOT_SEPARATOR){
         return false; // wrong format of the double number
     }
     stringIndex++; // skip the separator
@@ -62,6 +66,9 @@ bool StringHelper::tryParseToDouble(const MyString &string, double &result) {
 }
 
 void StringHelper::trimStr(const char *src, char *dest) {
+    if(src[0] == '\0'){
+        return;
+    }
     size_t srcIndex = 0;
     size_t destIndex = 0;
     while (src[srcIndex]== ' ' || src[srcIndex] == '\t'){ // skip the leading whitespaces
@@ -69,6 +76,10 @@ void StringHelper::trimStr(const char *src, char *dest) {
     }
     size_t srcFinalIndex = strlen(src) - 1;
     while (src[srcFinalIndex] == ' ' || src[srcFinalIndex] == '\t'){ // skip the final whitespaces
+        if(srcFinalIndex <= srcIndex){
+            dest[0] = '\0';
+            return;
+        }
         srcFinalIndex--;
     }
     for (int i = srcIndex; i <= srcFinalIndex; ++i) {
@@ -142,29 +153,44 @@ int StringHelper::findLength(double number) {
     int length = 0;
     if(number < 0){
         length++; // for the minus
+        number = -number; // to positive
     }
     long long intPart = static_cast<long long>(number); // Extract the integer part
     long long initialIntPart = intPart;
     // Calculate the length of the integer part
+    if(intPart == 0){
+        length++;
+    }
     while (intPart != 0) {
         intPart /= 10;
         length++;
     }
 
     if(initialIntPart == number){
-        return length;
+        return length; // if it is integer number
     }
 
-    length++; // Account for the decimal point
+    int precision = std::cout.precision();
 
     double decimalPart = number - static_cast<double>(initialIntPart); // Extract the decimal part
 
+    //round decimail
+    int decInReal = round(decimalPart * pow(10, precision));
+    //we dont have float part after the rounding
+    if (decInReal / ((int)pow(10, precision)) != 0)
+        return length;
+
+    length++; // Account for the decimal point
+
+    //remove ending zeros
+    while(decInReal % 10 ==0)
+        decInReal/=10;
+
     // Calculate the length of the decimal part
-    while (decimalPart - static_cast<long long>(decimalPart) != 0) {
-        decimalPart *= 10;
+    while (decInReal != 0) {
+        decInReal /= 10;
         length++;
     }
-
     return length;
 }
 
@@ -189,6 +215,10 @@ MyString StringHelper::convertStringCellForOutput(const MyString &string) {
     buffer[index++] = '"';
     buffer[index] = '\0';
     return buffer;
+}
+
+bool StringHelper::isEmptyCell(const MyString &string) {
+    return string.length() == 0;
 }
 
 void StringHelper::CellIndex::setX(size_t x) {

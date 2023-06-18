@@ -4,6 +4,7 @@
 #include "Row.h"
 #include "stringHelperFunctions.h"
 #include "consts.h"
+#include "Cells/EmptyCell.h"
 
 
 void Row::addCell(const SharedPointer<BaseCell>& newCell) {
@@ -59,4 +60,10 @@ const SharedPointer<BaseCell> Row::getCell(size_t colIndex) const {
         throw std::invalid_argument("Error! Wrong columnIndex");
     }
     return cells[colIndex];
+}
+
+void Row::fillEmptyCells(size_t count) {
+    for (int i = 0; i < count; ++i) {
+        cells.pushBack(new EmptyCell());
+    }
 }

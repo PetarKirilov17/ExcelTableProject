@@ -21,6 +21,7 @@ namespace StringHelper{
     bool tryParseToDouble(const MyString& string, double& result);
     bool tryParseToString(const MyString& inputString, MyString& result);
     bool isFormulaCell(const MyString& string);
+    bool isEmptyCell(const MyString& string);
     int findLength(int number);
     int findLength(double number);
     void printSymbolNTimes(char symbol, size_t times);

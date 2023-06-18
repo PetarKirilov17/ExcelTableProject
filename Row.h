@@ -19,6 +19,7 @@ public:
     const BaseCell& getCellByIndex(size_t index) const;
     void printRow(const MyVector<size_t>& columnSizes) const;
     void writeRowToFile(std::ostream &os) const;
+    void fillEmptyCells(size_t count);
     const SharedPointer<BaseCell> getCell(size_t colIndex) const;
 };
 
