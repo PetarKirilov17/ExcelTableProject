@@ -28,6 +28,7 @@ void ExpressionFactory::freeInstance() {
     instance = nullptr;
 }
 
+// Source for the algorithm -> https://www.javatpoint.com/convert-infix-to-postfix-notation
 MyVector<SharedPointer<BaseUnit>> ExpressionFactory::createExpression(const MyString &stringExpr,
                                                                       const MyVector<SharedPointer<BaseCell>> &referredCells) {
     MyVector<SharedPointer<BaseUnit>> units;

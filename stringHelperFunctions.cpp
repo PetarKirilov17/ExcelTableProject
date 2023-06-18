@@ -124,6 +124,9 @@ MyString StringHelper::extractNumberFromFormula(const MyString &stringExpr, int 
 
 int StringHelper::findLength(int number) {
     int length = 0;
+    if(length < 0){
+        length++; // for the minus
+    }
     while (number != 0) {
         number /= 10;
         length++;
@@ -137,6 +140,9 @@ int StringHelper::findLength(double number) {
         return 1; // If the number is zero, length is 1 (including the decimal point)
 
     int length = 0;
+    if(number < 0){
+        length++; // for the minus
+    }
     long long intPart = static_cast<long long>(number); // Extract the integer part
     long long initialIntPart = intPart;
     // Calculate the length of the integer part

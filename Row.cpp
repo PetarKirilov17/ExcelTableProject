@@ -46,7 +46,7 @@ void Row::setCell(size_t colIndex, const SharedPointer<BaseCell> &newCell) {
     cells[colIndex] = newCell; // operator = of SharedPointer
 }
 
-void Row::writeRowToFile(std::ostream &os) const { // TODO :: change
+void Row::writeRowToFile(std::ostream &os) const {
     for (int i = 0; i < cells.getSize() - 1; ++i) {
         cells[i]->writeInFile(os);
         os << ", ";

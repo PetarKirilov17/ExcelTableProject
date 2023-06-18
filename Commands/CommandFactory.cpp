@@ -10,6 +10,7 @@
 #include "CloseTableCommand.h"
 #include "SaveTableCommand.h"
 #include "OpenTableCommand.h"
+#include "WrongCommand.h"
 
 CommandFactory *CommandFactory::instance = nullptr;
 
@@ -41,9 +42,7 @@ SharedPointer<BaseCommand> CommandFactory::createCommand() {
         case '7':
             return new ExitCommand();
         default:
-            // TODO : invalid command
-            std::cout << "Invalid command!" << std::endl;
-            break;
+            return new WrongCommand();
     }
 }
 
