@@ -6,7 +6,7 @@
 #include "../CellFactory.h"
 #include "CommandFactory.h"
 
-void ExitCommand::execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) {
+void ExitCommand::execute() {
     std::cout << "Exit!";
     CellFactory::freeInstance();
     CommandFactory::freeInstance();

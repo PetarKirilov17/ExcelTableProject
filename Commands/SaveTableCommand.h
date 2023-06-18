@@ -8,8 +8,12 @@
 #include "BaseCommand.h"
 
 class SaveTableCommand : public BaseCommand{
+private:
+    SharedPointer<ExcelTable>& table;
+    MyString& fileOfTable;
 public:
-    void execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) override;
+    SaveTableCommand(SharedPointer<ExcelTable> &table, MyString& fileOfTable);
+    void execute() override;
     SharedPointer<BaseCommand> clone() const override;
 };
 

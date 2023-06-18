@@ -11,7 +11,7 @@
 class BaseCommand{
 public:
     bool validateTable(const SharedPointer<ExcelTable>& table);
-    virtual void execute(SharedPointer<ExcelTable>& table, MyString& fileOfTable) = 0;
+    virtual void execute() = 0;
     virtual SharedPointer<BaseCommand> clone() const = 0;
     virtual ~BaseCommand() = default;
 };

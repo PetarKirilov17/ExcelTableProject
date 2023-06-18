@@ -4,7 +4,7 @@
 
 #include "PrintCommand.h"
 
-void PrintCommand::execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) {
+void PrintCommand::execute() {
     if(!validateTable(table)){
         return;
     }
@@ -15,3 +15,5 @@ void PrintCommand::execute(SharedPointer<ExcelTable> &table, MyString &fileOfTab
 SharedPointer<BaseCommand> PrintCommand::clone() const {
     return SharedPointer<BaseCommand>(new PrintCommand(*this));
 }
+
+PrintCommand::PrintCommand(SharedPointer<ExcelTable> &table) : table(table) {}

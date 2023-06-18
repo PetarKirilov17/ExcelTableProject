@@ -8,6 +8,6 @@ SharedPointer<BaseCommand> WrongCommand::clone() const {
     return SharedPointer<BaseCommand>(new WrongCommand(*this));
 }
 
-void WrongCommand::execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) {
+void WrongCommand::execute() {
     std::cout << "Wrong command! Please insert (1-7)" << std::endl;
 }

@@ -8,9 +8,13 @@
 #include "BaseCommand.h"
 
 class CloseTableCommand : public BaseCommand{
+private:
+    SharedPointer<ExcelTable>& table;
+    MyString& fileOfTable;
 public:
+    CloseTableCommand(SharedPointer<ExcelTable>&table, MyString& fileOfTable);
     SharedPointer<BaseCommand> clone() const override;
-    void execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) override;
+    void execute() override;
 };
 
 #endif //EXCELTABLEPROJECT_CLOSETABLECOMMAND_H

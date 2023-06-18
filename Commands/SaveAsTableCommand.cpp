@@ -5,11 +5,13 @@
 #include "SaveAsTableCommand.h"
 #include "../consts.h"
 
+SaveAsTableCommand::SaveAsTableCommand(SharedPointer<ExcelTable> &table, MyString &fileOfTable) : table(table), fileOfTable(fileOfTable) {}
+
 SharedPointer<BaseCommand> SaveAsTableCommand::clone() const {
     return SharedPointer<BaseCommand>(new SaveAsTableCommand(*this));
 }
 
-void SaveAsTableCommand::execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) {
+void SaveAsTableCommand::execute() {
     if(!validateTable(table)){
         return;
     }
@@ -23,3 +25,4 @@ void SaveAsTableCommand::execute(SharedPointer<ExcelTable> &table, MyString &fil
         std::cout << exc.what() << std::endl;
     }
 }
+

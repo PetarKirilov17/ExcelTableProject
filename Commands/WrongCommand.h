@@ -9,7 +9,7 @@
 
 class WrongCommand : public BaseCommand{
 public:
-    void execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) override;
+    void execute() override;
     SharedPointer<BaseCommand> clone() const override;
 };
 

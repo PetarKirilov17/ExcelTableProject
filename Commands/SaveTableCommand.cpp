@@ -4,11 +4,14 @@
 
 #include "SaveTableCommand.h"
 
+
+SaveTableCommand::SaveTableCommand(SharedPointer<ExcelTable> &table, MyString& fileOfTable) : table(table), fileOfTable(fileOfTable) {}
+
 SharedPointer<BaseCommand> SaveTableCommand::clone() const {
     return SharedPointer<BaseCommand>(new SaveTableCommand(*this));
 }
 
-void SaveTableCommand::execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) {
+void SaveTableCommand::execute() {
     if(validateTable(table)){
         try {
             table->writeTableToFile(fileOfTable);
@@ -18,3 +21,4 @@ void SaveTableCommand::execute(SharedPointer<ExcelTable> &table, MyString &fileO
         }
     }
 }
+

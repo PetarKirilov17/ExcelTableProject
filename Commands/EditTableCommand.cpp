@@ -10,7 +10,9 @@ SharedPointer<BaseCommand> EditTableCommand::clone() const {
     return SharedPointer<BaseCommand>(new EditTableCommand(*this));
 }
 
-void EditTableCommand::execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) {
+EditTableCommand::EditTableCommand(SharedPointer<ExcelTable> &table) : table(table) {}
+
+void EditTableCommand::execute() {
     if(!validateTable(table))
         return;
 

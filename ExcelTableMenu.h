@@ -11,7 +11,7 @@
 class ExcelTableMenu{
 private:
     SharedPointer<ExcelTable> table;
-    MyString tableFileName;
+    MyString fileOfTable;
 
 public:
     void printTheUserMenu() const;

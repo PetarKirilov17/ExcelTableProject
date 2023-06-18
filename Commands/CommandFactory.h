@@ -16,7 +16,7 @@ public:
     CommandFactory& operator=(const CommandFactory&) = delete;
 
     static CommandFactory* getInstance();
-    SharedPointer<BaseCommand> createCommand();
+    SharedPointer<BaseCommand> createCommand(SharedPointer<ExcelTable>& table, MyString& fileOfTable);
     static void freeInstance();
 };
 

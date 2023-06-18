@@ -20,7 +20,7 @@ void ExcelTableMenu::processTheProgram() {
     CommandFactory* commandFactory = CommandFactory::getInstance();
     while(true){
         printTheUserMenu();
-        SharedPointer<BaseCommand> command = commandFactory->createCommand();
-        command->execute(this->table, this->tableFileName);
+        SharedPointer<BaseCommand> command = commandFactory->createCommand(table, fileOfTable);
+        command->execute();
     }
 }

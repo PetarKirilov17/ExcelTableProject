@@ -21,24 +21,24 @@ CommandFactory *CommandFactory::getInstance() {
     return instance;
 }
 
-SharedPointer<BaseCommand> CommandFactory::createCommand() {
+SharedPointer<BaseCommand> CommandFactory::createCommand(SharedPointer<ExcelTable>& table, MyString& fileOfTable) {
     std::cout << "Insert command: ";
     char command;
     std::cin >> command;
     std::cin.ignore();
     switch (command) {
         case '1':
-            return new OpenTableCommand();
+            return new OpenTableCommand(table, fileOfTable);
         case '2':
-            return new CloseTableCommand();
+            return new CloseTableCommand(table, fileOfTable);
         case '3':
-            return new SaveTableCommand();
+            return new SaveTableCommand(table, fileOfTable);
         case '4':
-            return new SaveAsTableCommand();
+            return new SaveAsTableCommand(table, fileOfTable);
         case '5':
-            return new PrintCommand();
+            return new PrintCommand(table);
         case '6':
-            return new EditTableCommand();
+            return new EditTableCommand(table);
         case '7':
             return new ExitCommand();
         default:

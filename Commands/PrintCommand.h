@@ -8,8 +8,11 @@
 #include "BaseCommand.h"
 
 class PrintCommand : public BaseCommand{
+private:
+    SharedPointer<ExcelTable>& table;
 public:
-    void execute(SharedPointer<ExcelTable> &table, MyString &fileOfTable) override;
+    PrintCommand(SharedPointer<ExcelTable>& table);
+    void execute() override;
     SharedPointer<BaseCommand> clone() const override;
 };
 
