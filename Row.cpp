@@ -23,12 +23,17 @@ const BaseCell &Row::getCellByIndex(size_t index) const {
 
 void Row::printRow(const MyVector<size_t> &columnSizes) const {
     std::cout << "|";
-    for (int i = 0; i < cells.getSize(); ++i) {
+    size_t countOfCells = cells.getSize();
+    for (int i = 0; i < countOfCells; ++i) {
         StringHelper::printSymbolNTimes(' ', MIN_COUNT_OF_ADDITIONAL_WHITESPACE / 2);
         size_t countOfPrintedSymbols = MIN_COUNT_OF_ADDITIONAL_WHITESPACE/2;
         cells[i]->print(std::cout);
         countOfPrintedSymbols+= cells[i]->getWidth();
         StringHelper::printSymbolNTimes(' ',columnSizes[i] - countOfPrintedSymbols);
+        std::cout << "|";
+    }
+    for (int i = countOfCells; i < columnSizes.getSize(); ++i) {
+        StringHelper::printSymbolNTimes(' ',columnSizes[i]);
         std::cout << "|";
     }
     std::cout << std::endl;
