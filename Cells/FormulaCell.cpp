@@ -14,8 +14,11 @@ BaseCell *FormulaCell::clone() const {
 }
 
 void FormulaCell::print(std::ostream &os) const {
-    //TODO : try catch division /0
+    try{
         os << getFormulaValue();
+    }catch (std::invalid_argument& exc){
+        std::cout << "ERROR";
+    }
 }
 
 double FormulaCell::getFormulaValue() const {
@@ -101,7 +104,11 @@ double FormulaCell::evaluateExpression() const {
 }
 
 int FormulaCell::getWidth() const {
-    return StringHelper::findLength(getFormulaValue());
+    try {
+        return StringHelper::findLength(getFormulaValue());
+    }catch (std::invalid_argument& exc){
+        return 5; // ERROR has five symbols
+    }
 }
 
 void FormulaCell::writeInFile(std::ostream &os) const {

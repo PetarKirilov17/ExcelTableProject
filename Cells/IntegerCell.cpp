@@ -14,7 +14,6 @@ double IntegerCell::getFormulaValue() const {
 }
 
 void IntegerCell::setCellData(int numberInCell) {
-    //TODO: add validations if needed
     this->cellData = numberInCell;
 }
 

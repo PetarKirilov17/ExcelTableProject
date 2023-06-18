@@ -6,7 +6,6 @@
 #include "../stringHelperFunctions.h"
 
 void DoubleCell::setCellData(double numberInCell) {
-    //TODO: add validations if needed
     this->cellData = numberInCell;
 }
 

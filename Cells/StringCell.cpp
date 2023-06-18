@@ -14,8 +14,15 @@ void StringCell::print(std::ostream &os) const {
 }
 
 double StringCell::getFormulaValue() const {
-    //TODO :: extract number from string
-    return 0.0;
+    double doubleRes = 0.0;
+    int intRes = 0;
+    if(StringHelper::tryParseToDouble(cellData, doubleRes)){
+        return doubleRes;
+    }
+    if(StringHelper::tryParseToInt(cellData,intRes)){
+        return intRes;
+    }
+    return 0.0; // default
 }
 
 BaseCell *StringCell::clone() const {

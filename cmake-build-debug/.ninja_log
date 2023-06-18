@@ -48,3 +48,15 @@
 18	1063	7087946596985845	CMakeFiles/ExcelTableProject.dir/Commands/CommandFactory.cpp.obj	f90e91db1eddb6a5
 12	1129	7087946597715069	CMakeFiles/ExcelTableProject.dir/Expressions/ExpressionFactory.cpp.obj	ebd73002a114f47d
 1130	1389	7087946600140692	ExcelTableProject.exe	c7b1cf6ef2eba599
+9	549	7087956018621663	CMakeFiles/ExcelTableProject.dir/Cells/FormulaCell.cpp.obj	3801822f2d663f65
+550	928	7087956021362926	ExcelTableProject.exe	c7b1cf6ef2eba599
+7	913	7087958945010392	CMakeFiles/ExcelTableProject.dir/main.cpp.obj	16b1571d16fcb705
+14	946	7087958945507286	CMakeFiles/ExcelTableProject.dir/Cells/IntegerCell.cpp.obj	fa0e8834e754b155
+32	953	7087958945577076	CMakeFiles/ExcelTableProject.dir/Cells/DoubleCell.cpp.obj	9d94332084360fae
+22	971	7087958945777074	CMakeFiles/ExcelTableProject.dir/Cells/StringCell.cpp.obj	c03baa5ad62474a9
+972	1269	7087958948676897	ExcelTableProject.exe	c7b1cf6ef2eba599
+5	623	7087960052336776	CMakeFiles/ExcelTableProject.dir/main.cpp.obj	16b1571d16fcb705
+12	633	7087960052436838	CMakeFiles/ExcelTableProject.dir/Cells/StringCell.cpp.obj	c03baa5ad62474a9
+634	914	7087960055177706	ExcelTableProject.exe	c7b1cf6ef2eba599
+13	486	7087962729975907	CMakeFiles/ExcelTableProject.dir/Cells/StringCell.cpp.obj	c03baa5ad62474a9
+486	896	7087962733882209	ExcelTableProject.exe	c7b1cf6ef2eba599
