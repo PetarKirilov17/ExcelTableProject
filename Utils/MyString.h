@@ -1,7 +1,9 @@
+
 //
 // Created by Petar on 10.5.2023 г..
 //
 
+//https://github.com/Angeld55/Object-oriented_programming_FMI/blob/master/Week%2009/MyString%20(with%20move)/MyString.h
 #ifndef TASK02_MYSTRING_H
 #define TASK02_MYSTRING_H
 #include "iostream"

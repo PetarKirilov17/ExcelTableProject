@@ -67,3 +67,55 @@ void Row::fillEmptyCells(size_t count) {
         cells.pushBack(new EmptyCell());
     }
 }
+
+void Row::copyFrom(const Row &other) {
+    for (int i = 0; i < other.cells.getSize(); ++i) {
+        this->cells.pushBack(other.cells[i]->clone());
+    }
+}
+
+void Row::moveFrom(Row &&other) {
+    this->cells = std::move(other.cells);
+}
+
+void Row::free() {
+    cells.clear();
+}
+
+Row::Row(const MyVector<SharedPointer<BaseCell>> &cells) : cells(cells.getSize()) {
+    for (int i = 0; i < cells.getSize(); ++i) {
+        this->cells.pushBack(cells[i]->clone());
+    }
+}
+
+Row::Row(MyVector<SharedPointer<BaseCell>> &&cells) {
+this->cells = std::move(cells);
+}
+
+Row::Row(const Row &other) : cells(other.cells.getSize()){
+    copyFrom(other);
+}
+
+Row &Row::operator=(const Row &other) {
+    if(this != &other){
+        free();
+        copyFrom(other);
+    }
+    return *this;
+}
+
+Row::Row(Row &&other) noexcept {
+    moveFrom(std::move(other));
+}
+
+Row &Row::operator=(Row &&other) noexcept {
+   if(this!= &other){
+       free();
+       moveFrom(std::move(other));
+   }
+    return *this;
+}
+
+Row::~Row() {
+    free();
+}

@@ -1,5 +1,5 @@
+//https://github.com/GeorgiTerziev02/Object-oriented_programming_FMI/blob/main/Sem.%2013/Solutions/Vector/Vector.hpp
 #pragma once
-
 #include "iostream"
 template <typename T>
 class MyVector{

@@ -2,6 +2,7 @@
 // Created by Petar on 14.6.2023 г..
 //
 
+//https://github.com/Angeld55/Object-oriented_programming_FMI/blob/master/Week%2008/String%20and%20StringView/StringView.h
 #ifndef EXCELTABLEPROJECT_STRINGVIEW_H
 #define EXCELTABLEPROJECT_STRINGVIEW_H
 #include "MyString.h"
